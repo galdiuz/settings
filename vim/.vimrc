@@ -34,7 +34,9 @@ filetype plugin indent on    " required
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 
+"==========
 " SETTINGS
+"==========
 
 filetype plugin indent on
 set tabstop=4
@@ -53,7 +55,12 @@ imap <Home> <Esc>^i
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
+" Remove trailing whitespace
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+"=================
 " PLUGIN SETTINGS
+"=================
 
 " Netrw settings
 map <C-e> :Rexplore<CR>
