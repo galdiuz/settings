@@ -47,16 +47,22 @@ set number
 set noswapfile
 "set foldlevelstart=0
 
-" Home to start of indent
-map <Home> ^
-imap <Home> <Esc>^i
-
 " Toggle folding
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
 " Remove trailing whitespace
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+" Line wrapping & Home to start of indent
+noremap  <buffer> <silent> <Up>   gk
+noremap  <buffer> <silent> <Down> gj
+noremap <Home> g^
+noremap <End> g<End>
+inoremap <buffer> <silent> <Up>   <C-o>gk
+inoremap <buffer> <silent> <Down> <C-o>gj
+inoremap <Home> <C-o>g^
+inoremap <End> <C-o>g<End>
 
 "=================
 " PLUGIN SETTINGS
