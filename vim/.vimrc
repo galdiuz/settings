@@ -21,6 +21,7 @@ Plugin 'sumpygump/php-documentor-vim'
 Plugin 'captbaritone/better-indent-support-for-php-with-html'
 Plugin 'gcmt/taboo.vim'
 Plugin 'rayburgemeestre/phpfolding.vim'
+Plugin 'ntpeters/vim-better-whitespace'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
