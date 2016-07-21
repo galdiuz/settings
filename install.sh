@@ -2,3 +2,4 @@
 . installers/oh-my-zsh.sh
 . installers/vim.sh
 . installers/git.sh
+. installers/chrome.sh
