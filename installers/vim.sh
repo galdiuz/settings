@@ -1,4 +1,4 @@
-sudo apt-get install vim -y
+sudo apt-get install vim-gnome -y
 
 rm -f ~/.vimrc
 CURRENT_DIR="$(pwd)"
