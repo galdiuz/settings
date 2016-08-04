@@ -78,8 +78,8 @@ let g:netrw_alto=1
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.xml"
 
 " PHP Documentor settings
-inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i 
-nnoremap <C-P> :call PhpDocSingle()<CR> 
+inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
+nnoremap <C-P> :call PhpDocSingle()<CR>
 vnoremap <C-P> :call PhpDocRange()<CR>
 let g:pdv_cfg_ClassTags = ["author", "copyright"]
 let g:pdv_cfg_Type = "mixed"
@@ -155,10 +155,14 @@ function! CustomPHPFoldText()
     if currentLine != v:foldstart
         "let lineString = lineString . " " . g:phpDocIncludedPostfix . " "
     endif
+
     " Return the foldtext
-    let w = winwidth(0) - &foldcolumn - (&number ? 4 : 0)
+    redir =>a |exe "sil sign place buffer=".bufnr('')|redir end
+    let signlist=split(a, '\n')
+    let width=winwidth(0) - ((&number||&relativenumber) ? &numberwidth : 0) - &foldcolumn - (len(signlist) > 2 ? 2 : 0)
     let lineCountStr = "[" . lines . " lines]"
-    let expansionString = repeat(" ", w - strwidth(lineString.lineCountStr))
+    let expansionString = repeat(" ", width - strwidth(lineString.lineCountStr))
+
     return lineString.expansionString.lineCountStr
 endfunction
 
