@@ -161,10 +161,18 @@ function! CustomPHPFoldText()
     let signlist=split(a, '\n')
     let width=winwidth(0) - ((&number||&relativenumber) ? &numberwidth : 0) - &foldcolumn - (len(signlist) > 2 ? 2 : 0)
     let lineCountStr = "[" . lines . " lines]"
+    if strwidth(lineString) > width - strwidth(lineCountStr) - 1
+        let lineString = strpart(lineString, 0, width - strwidth(lineCountStr) - 1) . '…'
+    endif
     let expansionString = repeat(" ", width - strwidth(lineString.lineCountStr))
 
     return lineString.expansionString.lineCountStr
 endfunction
 
-autocmd VimEnter *.php set foldtext=CustomPHPFoldText()
-"autocmd VimEnter *.php normal zR
+
+augroup reload_vimrc " {
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+    autocmd VimEnter,BufReadPost *.php set foldtext=CustomPHPFoldText()
+    "autocmd VimEnter *.php normal zR
+augroup END " }
