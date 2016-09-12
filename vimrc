@@ -55,14 +55,14 @@ vnoremap <Space> zf
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 " Line wrapping & Home to start of indent
-noremap  <buffer> <silent> <Up>   gk
-noremap  <buffer> <silent> <Down> gj
-noremap <Home> g^
-noremap <End> g<End>
-inoremap <buffer> <silent> <Up>   <C-o>gk
-inoremap <buffer> <silent> <Down> <C-o>gj
-inoremap <Home> <C-o>g^
-inoremap <End> <C-o>g<End>
+autocmd VimEnter,BufReadPost * noremap  <buffer> <silent> <Up>   gk
+autocmd VimEnter,BufReadPost * noremap  <buffer> <silent> <Down> gj
+autocmd VimEnter,BufReadPost * noremap <Home> g^
+autocmd VimEnter,BufReadPost * noremap <End> g<End>
+autocmd VimEnter,BufReadPost * inoremap <buffer> <silent> <Up>   <C-o>gk
+autocmd VimEnter,BufReadPost * inoremap <buffer> <silent> <Down> <C-o>gj
+autocmd VimEnter,BufReadPost * inoremap <Home> <C-o>g^
+autocmd VimEnter,BufReadPost * inoremap <End> <C-o>g<End>
 
 "=================
 " PLUGIN SETTINGS
@@ -98,7 +98,7 @@ let g:taboo_tab_format=" %m%N: %f(%W) "
 let g:taboo_renamed_tab_format=" %m%N: %l(%W) "
 
 " Folding
-function! CustomPHPFoldText()
+function! CustomFoldText()
     let currentLine = v:foldstart
     let lines = (v:foldend - v:foldstart + 1)
     let lineString = getline(currentLine)
@@ -173,6 +173,6 @@ endfunction
 augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
-    autocmd VimEnter,BufReadPost *.php set foldtext=CustomPHPFoldText()
+    autocmd VimEnter,BufReadPost * set foldtext=CustomFoldText()
     "autocmd VimEnter *.php normal zR
 augroup END " }
