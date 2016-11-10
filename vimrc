@@ -22,6 +22,8 @@ Plugin 'captbaritone/better-indent-support-for-php-with-html'
 Plugin 'gcmt/taboo.vim'
 Plugin 'rayburgemeestre/phpfolding.vim'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'tpope/vim-fugitive'
+Plugin 'craigemery/vim-autotag'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -46,6 +48,8 @@ set shiftwidth=4
 set expandtab
 set number
 set noswapfile
+set wildmenu
+set wildmode=longest,full
 
 " Toggle folding
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
@@ -64,6 +68,9 @@ autocmd VimEnter,BufReadPost * inoremap <buffer> <silent> <Down> <C-o>gj
 autocmd VimEnter,BufReadPost * inoremap <Home> <C-o>g^
 autocmd VimEnter,BufReadPost * inoremap <End> <C-o>g<End>
 
+" Tags
+set tags=/var/www/tags,./tags;/,tags;/
+
 "=================
 " PLUGIN SETTINGS
 "=================
@@ -76,6 +83,10 @@ let g:netrw_alto=1
 
 " Closetags settings
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.xml"
+
+" Autopairs settings
+let g:AutoPairsShortcutFastWrap = 'đ'
+let g:AutoPairsMultilineClose = 0
 
 " PHP Documentor settings
 inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
