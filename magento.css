@@ -1,0 +1,86 @@
+.*/index\.php/admin/.*
+
+body {
+    background: #333;
+    color: #ccc;
+}
+.middle {
+    background: url(images/simple_container_bg.gif) repeat-x #444;
+}
+.footer {
+    /*background: url(images/footer_bg.gif) repeat-x #333;*/
+    background: linear-gradient(#444, #333);
+    color: #eee;
+}
+.notification-global {
+    /*background-image: url(/skin/adminhtml/default/default/images/error_msg_icon.gif) 27px 5px no-repeat;*/
+    background: linear-gradient(#553, #664);
+    border-bottom: 1px solid #664;
+    border-top: 1px solid #664;
+    color: inherit;
+}
+.nav-bar {
+    background: linear-gradient(#555, #666);
+}
+#nav a {
+    color: #ddd;
+}
+#nav ul li {
+    background: #333;
+}
+ul.tabs, ul.tabs a {
+    background: #333;
+    color: #ccc;
+}
+ul.tabs a.active span {
+    background: #555;
+}
+ul.tabs a:hover {
+    background: #444;
+    color: #ccc;
+}
+ul.tabs a:hover.active span {
+    background: #555;
+}
+.content-header {
+    border-bottom: 4px solid #8a8a8a;
+}
+.massaction {
+    background: #666;
+    background: linear-gradient(#777, #666);
+    border-top: none;
+}
+.massaction .entry-edit .field-row label {
+    color: #eee;
+}
+.grid tr.headings {
+    background: linear-gradient(#444, #333);
+}
+.grid tr.headings th {
+    border-color: #888 #bbb #888 #333
+}
+.grid tr.headings th a {
+    color: #bbd;
+}
+.grid tr.headings th.no-link {
+    color: #a8a8a8;
+}
+.grid tr.headings th a.sort-arrow-desc, .grid tr.headings th a.sort-arrow-asc {
+    background: #666;
+    border-left: 1px solid #aaa;
+    border-right: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+}
+.grid tr.filter {
+    background: #707888;
+    background: linear-gradient(#808898, #707888);
+}
+.grid tbody {
+    background: #585858;
+}
+.grid tr.even, .grid tr.even tr {
+    background: #484848;
+}
+.grid tr.on-mouse {
+    background: #787878;
+}
