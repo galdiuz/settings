@@ -24,6 +24,7 @@ Plugin 'rayburgemeestre/phpfolding.vim'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'tpope/vim-fugitive'
 Plugin 'craigemery/vim-autotag'
+Plugin 'will133/vim-dirdiff'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -87,6 +88,7 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.xml"
 " Autopairs settings
 let g:AutoPairsShortcutFastWrap = 'đ'
 let g:AutoPairsMultilineClose = 0
+let g:AutoPairsCenterLine = 0
 
 " PHP Documentor settings
 inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
