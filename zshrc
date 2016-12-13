@@ -90,3 +90,5 @@ alias glgr="git log --graph --abbrev-commit --decorate --format=format:'%C(bold 
 setxkbmap -option caps:none
 
 stty -ixon
+
+setopt HIST_FIND_NO_DUPS
