@@ -76,13 +76,13 @@ set tags=/var/www/tags,./tags;/,tags;/
 " PLUGIN SETTINGS
 "=================
 
-" Netrw settings
+" Netrw
 map <C-e> :Rexplore<CR>
 let g:netrw_liststyle=3
 let g:netrw_altv=1
 let g:netrw_alto=1
 
-" Closetags settings
+" Closetags
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.xml"
 
 " Autopairs settings
@@ -90,7 +90,7 @@ let g:AutoPairsShortcutFastWrap = 'đ'
 let g:AutoPairsMultilineClose = 0
 let g:AutoPairsCenterLine = 0
 
-" PHP Documentor settings
+" PHP Documentor
 inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
 nnoremap <C-P> :call PhpDocSingle()<CR>
 vnoremap <C-P> :call PhpDocRange()<CR>
@@ -102,15 +102,17 @@ let g:pdv_cfg_Author = "   Webbhuset AB <info@webbhuset.se>"
 let g:pdv_cfg_Copyright = "Copyright (C) 2016 Webbhuset AB"
 let g:pdv_cfg_License = ""
 
-" Syntastic settings
+" Syntastic
 let g:syntastic_check_on_open = 1
 
-" Taboo settings
+" Taboo
 set sessionoptions+=tabpages,globals
 let g:taboo_tab_format=" %m%N: %f(%W) "
 let g:taboo_renamed_tab_format=" %m%N: %l(%W) "
 
-" Folding
+"=================
+" FOLDING
+"=================
 function! CustomFoldText()
     let currentLine = v:foldstart
     let lines = (v:foldend - v:foldstart + 1)
@@ -182,7 +184,47 @@ function! CustomFoldText()
     return lineString.expansionString.lineCountStr
 endfunction
 
+"=================
+" ALIGN EQUALS
+"=================
 
+function! AlignEqualsRange() range
+    let lineStart   = line("'<")
+    let lineEnd     = line("'>")
+    let equalsCol   = 0
+
+    for i in range(lineStart, lineEnd)
+        let col = stridx(getline(i), "=")
+        if col > equalsCol
+            let equalsCol = col
+        endif
+    endfor
+
+    if &tabstop > 0
+        let equalsCol += (&tabstop - (equalsCol % &tabstop)) % &tabstop
+    endif
+
+    for i in range(lineStart, lineEnd)
+        let lineString      = getline(i)
+        let col             = stridx(lineString, "=")
+        let spaces          = equalsCol - col
+        let lineStringEnd   = strpart(lineString, col)
+        let lineString      = strpart(lineString, 0, col)
+        let j               = 0
+        while j < spaces
+            let lineString .= " "
+            let j += 1
+        endwhile
+        let lineString .= lineStringEnd
+        call setline(i, lineString)
+    endfor
+endfunction
+
+vnoremap <F4> :call AlignEqualsRange()<CR>
+
+"=================
+" RELOAD
+"=================
 augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
