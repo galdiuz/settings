@@ -51,6 +51,8 @@ set number
 set noswapfile
 set wildmenu
 set wildmode=longest,full
+set ignorecase
+set smartcase
 
 " Toggle folding
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
@@ -99,7 +101,7 @@ let g:pdv_cfg_Type = "mixed"
 let g:pdv_cfg_Package = ""
 let g:pdv_cfg_Version = ""
 let g:pdv_cfg_Author = "   Webbhuset AB <info@webbhuset.se>"
-let g:pdv_cfg_Copyright = "Copyright (C) 2016 Webbhuset AB"
+let g:pdv_cfg_Copyright = "Copyright (C) 2017 Webbhuset AB"
 let g:pdv_cfg_License = ""
 
 " Syntastic
