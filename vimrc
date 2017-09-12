@@ -26,6 +26,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'craigemery/vim-autotag'
 Plugin 'will133/vim-dirdiff'
 Plugin 'tpope/vim-surround'
+Plugin 'easymotion/vim-easymotion'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -48,7 +49,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-set number
+set relativenumber
 set noswapfile
 set wildmenu
 set wildmode=longest,full
@@ -112,6 +113,53 @@ let g:syntastic_check_on_open = 1
 set sessionoptions+=tabpages,globals
 let g:taboo_tab_format=" %m%N: %f(%W) "
 let g:taboo_renamed_tab_format=" %m%N: %l(%W) "
+
+" Easymotion
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_upper = 1
+let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
+let g:EasyMotion_verbose = 0
+
+map / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+map ? <Plug>(easymotion-sn)
+omap ? <Plug>(easymotion-tn)
+
+nmap f <Plug>(easymotion-fl)
+vmap f <Plug>(easymotion-fl)
+nmap F <Plug>(easymotion-Fl)
+vmap F <Plug>(easymotion-Fl)
+
+nmap t <plug>(easymotion-tl)
+vmap t <plug>(easymotion-tl)
+nmap T <plug>(easymotion-Tl)
+vmap T <plug>(easymotion-Tl)
+
+nmap w <plug>(easymotion-w)
+vmap w <plug>(easymotion-w)
+nmap W <plug>(easymotion-W)
+vmap W <plug>(easymotion-W)
+
+nmap b <plug>(easymotion-b)
+vmap b <plug>(easymotion-b)
+nmap B <plug>(easymotion-B)
+vmap B <plug>(easymotion-B)
+
+nmap e <plug>(easymotion-e)
+vmap e <plug>(easymotion-e)
+nmap E <plug>(easymotion-E)
+vmap E <plug>(easymotion-E)
+
+nmap ge <plug>(easymotion-ge)
+vmap ge <plug>(easymotion-ge)
+nmap gE <plug>(easymotion-gE)
+vmap gE <plug>(easymotion-gE)
+
+nmap n <plug>(easymotion-n)
+vmap n <plug>(easymotion-n)
+nmap N <plug>(easymotion-N)
+vmap N <plug>(easymotion-N)
 
 "=================
 " FOLDING
