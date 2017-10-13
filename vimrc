@@ -108,6 +108,7 @@ let g:pdv_cfg_License = ""
 
 " Syntastic
 let g:syntastic_check_on_open = 1
+let g:syntastic_python_python_exec = '/usr/bin/python3'
 
 " Taboo
 set sessionoptions+=tabpages,globals
