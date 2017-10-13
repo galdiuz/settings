@@ -116,10 +116,13 @@ let g:taboo_tab_format=" %m%N: %f(%W) "
 let g:taboo_renamed_tab_format=" %m%N: %l(%W) "
 
 " Easymotion
+let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_upper = 1
 let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
 let g:EasyMotion_verbose = 0
+let g:EasyMotion_skipfoldedline = 0
+let g:EasyMotion_enter_jump_first = 1
 
 map / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
