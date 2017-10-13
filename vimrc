@@ -255,8 +255,8 @@ function! AlignEqualsRange() range
         endif
     endfor
 
-    if &tabstop > 0
-        let equalsCol += (&tabstop - (equalsCol % &tabstop)) % &tabstop
+    if &shiftwidth > 0
+        let equalsCol += (&shiftwidth - (equalsCol % &shiftwidth)) % &shiftwidth
     endif
 
     for i in range(lineStart, lineEnd)
