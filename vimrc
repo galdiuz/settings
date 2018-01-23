@@ -98,6 +98,7 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.xml"
 
 " Autopairs settings
 let g:AutoPairsShortcutFastWrap = 'đ'
+let g:AutoPairsShortcutToggle = 'ŋ'
 let g:AutoPairsMultilineClose = 0
 let g:AutoPairsCenterLine = 0
 
