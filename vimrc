@@ -27,6 +27,10 @@ Plugin 'craigemery/vim-autotag'
 Plugin 'will133/vim-dirdiff'
 Plugin 'tpope/vim-surround'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-commentary'
+Plugin 'tmhedberg/matchit'
+Plugin 'tmhedberg/SimpylFold'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -76,6 +80,9 @@ autocmd VimEnter,BufReadPost * inoremap <End> <C-o>g<End>
 " Tags
 set tags=/var/www/tags,./tags;/,tags;/
 
+" Autocorrect
+iabbrev consolidaiton consolidation
+
 "=================
 " PLUGIN SETTINGS
 "=================
@@ -103,7 +110,7 @@ let g:pdv_cfg_Type = "mixed"
 let g:pdv_cfg_Package = ""
 let g:pdv_cfg_Version = ""
 let g:pdv_cfg_Author = "   Webbhuset AB <info@webbhuset.se>"
-let g:pdv_cfg_Copyright = "Copyright (C) 2017 Webbhuset AB"
+let g:pdv_cfg_Copyright = "Copyright (C) 2018 Webbhuset AB"
 let g:pdv_cfg_License = ""
 
 " Syntastic
