@@ -88,7 +88,10 @@ alias gcm="git commit -m"
 alias glgr="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
 alias grpo="git remote prune origin"
 alias gs="git status"
+alias gsta="git stash push"
 
 stty -ixon
 
 setopt HIST_FIND_NO_DUPS
+
+eval $(hash thefuck 2>/dev/null && thefuck --alias fml)
