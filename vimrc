@@ -31,6 +31,8 @@ Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-commentary'
 Plugin 'tmhedberg/matchit'
 Plugin 'tmhedberg/SimpylFold'
+Plugin 'jparise/vim-graphql'
+Plugin 'neo4j-contrib/cypher-vim-syntax'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
