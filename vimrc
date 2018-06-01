@@ -33,6 +33,7 @@ Plugin 'tmhedberg/matchit'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'jparise/vim-graphql'
 Plugin 'neo4j-contrib/cypher-vim-syntax'
+Plugin 'ElmCast/elm-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -55,7 +56,8 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-set relativenumber
+set number
+"set relativenumber
 set noswapfile
 set wildmenu
 set wildmode=longest,full

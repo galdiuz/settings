@@ -408,6 +408,7 @@ if version >= 600
 
   syn include @phpCypher syntax/cypher.vim
   unlet b:current_syntax
+  syn case match
   syn include @phpGraphQL syntax/graphql.vim
   unlet b:current_syntax
 
