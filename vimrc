@@ -63,6 +63,8 @@ set wildmenu
 set wildmode=longest,full
 set ignorecase
 set smartcase
+set list
+set listchars=tab:>-
 
 " Status line
 set laststatus=2                             " always show statusbar
