@@ -64,6 +64,18 @@ set wildmode=longest,full
 set ignorecase
 set smartcase
 
+" Status line
+set laststatus=2                             " always show statusbar
+set statusline=
+set statusline+=%-5.3n\                      " buffer number
+set statusline+=%f\                          " filename
+set statusline+=%h%m%r%w                     " status flags
+"set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
+set statusline+=%=                           " right align remainder
+set statusline+=0x%-8B                       " character value
+set statusline+=%-14(%l,%c%V%)               " line, character
+set statusline+=%<%P                         " file position
+
 " Toggle folding
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
@@ -86,6 +98,21 @@ set tags=/var/www/tags,./tags;/,tags;/
 
 " Autocorrect
 iabbrev consolidaiton consolidation
+
+" Dahbug
+nmap <F3>dd o\dahbug::dump();<ESC>hi
+imap <F3>dd \dahbug::dump();<ESC>hi
+nmap <F3>dp o\dahbug::dump();<ESC>hPll
+imap <F3>dp \dahbug::dump();<ESC>hPlla
+nmap <F3>mm o\dahbug::methods();<ESC>hi
+imap <F3>mm \dahbug::methods();<ESC>hi
+nmap <F3>mp o\dahbug::methods();<ESC>hPll
+imap <F3>mp \dahbug::methods();<ESC>hPlla
+nmap <F3>tt o\dahbug::toggleTimer();<ESC>hi
+imap <F3>tt \dahbug::toggleTimer();<ESC>hi
+nmap <F3>tp o\dahbug::toggleTimer();<ESC>hPll
+imap <F3>tp \dahbug::toggleTimer();<ESC>hPlla
+
 
 "=================
 " PLUGIN SETTINGS
@@ -117,6 +144,9 @@ let g:pdv_cfg_Version = ""
 let g:pdv_cfg_Author = "   Webbhuset AB <info@webbhuset.se>"
 let g:pdv_cfg_Copyright = "Copyright (C) 2018 Webbhuset AB"
 let g:pdv_cfg_License = ""
+
+" Elm-vim
+autocmd FileType elm setlocal foldmethod=syntax
 
 " Syntastic
 let g:syntastic_check_on_open = 1
