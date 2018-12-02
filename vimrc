@@ -153,6 +153,7 @@ autocmd FileType elm setlocal foldmethod=syntax
 " Syntastic
 let g:syntastic_check_on_open = 1
 let g:syntastic_python_python_exec = '/usr/bin/python3'
+let g:syntastic_rst_checkers = ['sphinx']
 
 " Taboo
 set sessionoptions+=tabpages,globals
