@@ -274,7 +274,7 @@ syn keyword phpRepeat as do endfor endforeach endwhile for foreach while  contai
 syn keyword phpLabel  case default switch contained
 
 " Statement
-syn keyword phpStatement  return break continue exit goto yield  contained
+syn keyword phpStatement  return break continue exit goto yield from  contained
 
 " Keyword
 syn keyword phpKeyword  var const contained
@@ -495,7 +495,7 @@ if exists("php_folding") && php_folding==1
 elseif exists("php_folding") && php_folding==2
   syn keyword phpDefine function  contained
   syn keyword phpStructure  abstract class interface  contained
-  syn keyword phpException  catch throw try contained
+  syn keyword phpException  catch throw try finally contained
   syn keyword phpStorageClass final global private protected public static  contained
 
   set foldmethod=syntax
@@ -504,7 +504,7 @@ elseif exists("php_folding") && php_folding==2
 else
   syn keyword phpDefine function  contained
   syn keyword phpStructure  abstract class interface  contained
-  syn keyword phpException  catch throw try contained
+  syn keyword phpException  catch throw try finally contained
   syn keyword phpStorageClass final global private protected public static  contained
 endif
 
