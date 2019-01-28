@@ -89,6 +89,7 @@ alias glgr="git log --graph --abbrev-commit --decorate --format=format:'%C(bold 
 alias grpo="git remote prune origin"
 alias gs="git status"
 alias gsta="git stash push"
+alias gsh="git show"
 
 stty -ixon
 
