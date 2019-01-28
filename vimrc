@@ -34,6 +34,7 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'jparise/vim-graphql'
 Plugin 'neo4j-contrib/cypher-vim-syntax'
 Plugin 'ElmCast/elm-vim'
+Plugin 'tpope/vim-vinegar'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -71,6 +72,7 @@ set laststatus=2                             " always show statusbar
 set statusline=
 set statusline+=%-5.3n\                      " buffer number
 set statusline+=%f\                          " filename
+set statusline+=%{&bomb?'[BOM]':''}          " BOM flag
 set statusline+=%h%m%r%w                     " status flags
 "set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
 set statusline+=%=                           " right align remainder
@@ -121,10 +123,11 @@ imap <F3>tp \dahbug::toggleTimer();<ESC>hPlla
 "=================
 
 " Netrw
-map <C-e> :Rexplore<CR>
+"map <C-e> :Rexplore<CR>
 let g:netrw_liststyle=3
 let g:netrw_altv=1
 let g:netrw_alto=1
+autocmd FileType netrw setl bufhidden=delete
 
 " Closetags
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.xml"
