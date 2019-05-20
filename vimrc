@@ -137,6 +137,7 @@ let g:AutoPairsShortcutFastWrap = 'đ'
 let g:AutoPairsShortcutToggle = 'ŋ'
 let g:AutoPairsMultilineClose = 0
 let g:AutoPairsCenterLine = 0
+au Filetype php call AutoPairsDefine({'<?=' : '?>'}, ['<?', '<?php'])
 
 " PHP Documentor
 inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
