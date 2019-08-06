@@ -34,7 +34,10 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'jparise/vim-graphql'
 Plugin 'neo4j-contrib/cypher-vim-syntax'
 Plugin 'ElmCast/elm-vim'
-Plugin 'tpope/vim-vinegar'
+"Plugin 'tpope/vim-vinegar'
+Plugin 'Shougo/defx.nvim'
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -81,7 +84,7 @@ set statusline+=%-14(%l,%c%V%)               " line, character
 set statusline+=%<%P                         " file position
 
 " Toggle folding
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+nnoremap <silent> <Space> @=(foldlevel('.')?'zA':"\<Space>")<CR>
 vnoremap <Space> zf
 
 " Remove trailing whitespace
@@ -137,7 +140,7 @@ let g:AutoPairsShortcutFastWrap = 'đ'
 let g:AutoPairsShortcutToggle = 'ŋ'
 let g:AutoPairsMultilineClose = 0
 let g:AutoPairsCenterLine = 0
-au Filetype php call AutoPairsDefine({'<?=' : '?>'}, ['<?', '<?php'])
+"au Filetype php call AutoPairsDefine({'<?=' : '?>'}, ['<?', '<?php'])
 
 " PHP Documentor
 inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
@@ -213,6 +216,94 @@ nmap n <plug>(easymotion-n)
 vmap n <plug>(easymotion-n)
 nmap N <plug>(easymotion-N)
 vmap N <plug>(easymotion-N)
+
+" Defx
+
+nnoremap <silent> - :Defx -resume -toggle<CR>
+
+autocmd VimEnter * command! -nargs=? Explore :Defx <args>
+autocmd VimEnter * command! -nargs=? Texplore :Defx -split=tab -resume=1 <args>
+autocmd VimEnter * command! -nargs=? -bang Vexplore call SplitDefx('vnew', <bang>0, <f-args>)
+autocmd VimEnter * command! -nargs=? -bang Hexplore call SplitDefx('new', <bang>1, <f-args>)
+
+function! SplitDefx(split, bang, ...)
+    let com = a:split . " | Defx -resume " . get(a:, 1, "")
+
+    if a:bang
+        let com = "below " . l:com
+    endif
+
+    execute l:com
+endfunction
+
+autocmd FileType defx setlocal cursorline
+autocmd FileType defx call s:defx_my_settings()
+function! s:defx_my_settings() abort
+  " Define mappings
+  nnoremap <silent><buffer><expr> <CR>
+  \ defx#is_directory() ?
+  \ defx#do_action('open_or_close_tree') :
+  \ defx#do_action('open')
+  nnoremap <silent><buffer><expr> c
+  \ defx#do_action('copy')
+  nnoremap <silent><buffer><expr> m
+  \ defx#do_action('move')
+  nnoremap <silent><buffer><expr> p
+  \ defx#do_action('paste')
+  nnoremap <silent><buffer><expr> l
+  \ defx#do_action('open')
+  nnoremap <silent><buffer><expr> E
+  \ defx#do_action('open', 'vsplit')
+  nnoremap <silent><buffer><expr> P
+  \ defx#do_action('open', 'pedit')
+  nnoremap <silent><buffer><expr> o
+  \ defx#do_action('open_or_close_tree')
+  nnoremap <silent><buffer><expr> d
+  \ defx#do_action('new_directory')
+  nnoremap <silent><buffer><expr> %
+  \ defx#do_action('new_file')
+  nnoremap <silent><buffer><expr> M
+  \ defx#do_action('new_multiple_files')
+  nnoremap <silent><buffer><expr> C
+  \ defx#do_action('toggle_columns',
+  \                'mark:indent:icon:filename:type:size:time')
+  nnoremap <silent><buffer><expr> S
+  \ defx#do_action('toggle_sort', 'time')
+  nnoremap <silent><buffer><expr> D
+  \ defx#do_action('remove')
+  nnoremap <silent><buffer><expr> r
+  \ defx#do_action('rename')
+  nnoremap <silent><buffer><expr> !
+  \ defx#do_action('execute_command')
+  nnoremap <silent><buffer><expr> x
+  \ defx#do_action('execute_system')
+  nnoremap <silent><buffer><expr> yy
+  \ defx#do_action('yank_path')
+  nnoremap <silent><buffer><expr> .
+  \ defx#do_action('toggle_ignored_files')
+  nnoremap <silent><buffer><expr> ;
+  \ defx#do_action('repeat')
+  nnoremap <silent><buffer><expr> h
+  \ defx#do_action('cd', ['..'])
+  nnoremap <silent><buffer><expr> ~
+  \ defx#do_action('cd')
+  nnoremap <silent><buffer><expr> q
+  \ defx#do_action('quit')
+  nnoremap <silent><buffer><expr> <Space>
+  \ defx#do_action('toggle_select') . 'j'
+  nnoremap <silent><buffer><expr> *
+  \ defx#do_action('toggle_select_all')
+  nnoremap <silent><buffer><expr> j
+  \ line('.') == line('$') ? 'gg' : 'j'
+  nnoremap <silent><buffer><expr> k
+  \ line('.') == 1 ? 'G' : 'k'
+  nnoremap <silent><buffer><expr> <C-l>
+  \ defx#do_action('redraw')
+  nnoremap <silent><buffer><expr> <C-g>
+  \ defx#do_action('print')
+  nnoremap <silent><buffer><expr> cd
+  \ defx#do_action('change_vim_cwd')
+endfunction
 
 "=================
 " FOLDING
