@@ -237,6 +237,7 @@ function! SplitDefx(split, bang, ...)
 endfunction
 
 autocmd FileType defx setlocal cursorline
+autocmd FileType defx call defx#custom#column('filename', 'min_width', 60)
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   " Define mappings
