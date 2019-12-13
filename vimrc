@@ -82,6 +82,8 @@ set statusline+=%=                           " right align remainder
 set statusline+=0x%-8B                       " character value
 set statusline+=%-14(%l,%c%V%)               " line, character
 set statusline+=%<%P                         " file position
+set modelines=0
+set nomodeline
 
 " Toggle folding
 nnoremap <silent> <Space> @=(foldlevel('.')?'zA':"\<Space>")<CR>
