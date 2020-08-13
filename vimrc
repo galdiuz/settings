@@ -238,9 +238,38 @@ function! SplitDefx(split, bang, ...)
     execute l:com
 endfunction
 
-autocmd FileType defx setlocal cursorline
-autocmd FileType defx call defx#custom#column('filename', 'min_width', 60)
-autocmd FileType defx call s:defx_my_settings()
+hi link Defx_mark_0_readonly Comment
+hi link Defx_mark_0_selected Statement
+hi link Defx_filename_3_directory_icon Special
+hi link Defx_filename_3_opened_icon Special
+hi link Defx_filename_3_root_icon Identifier
+hi link Defx_filename_3_directory PreProc
+hi link Defx_filename_3_root Identifier
+hi link Defx_filename_3_root_marker Constant
+hi link Defx_filename_3_hidden Comment
+hi link Defx_type_4_text Constant
+hi link Defx_type_4_image Type
+hi link Defx_type_4_archive Special
+hi link Defx_type_4_executable Statement
+
+augroup defx_settings
+    autocmd!
+    autocmd BufEnter * call s:open_defx_if_directory()
+    autocmd FileType defx setlocal cursorline
+    autocmd FileType defx call defx#custom#column('filename', 'min_width', 60)
+    autocmd FileType defx call s:defx_my_settings()
+augroup END
+
+let g:loaded_netrw= v:true
+let g:netrw_loaded_netrwPlugin= v:true
+
+function! s:open_defx_if_directory()
+    let l:full_path = expand(expand('%:p'))
+    if isdirectory(l:full_path)
+        Defx `expand('%:p')`
+    endif
+endfunction
+
 function! s:defx_my_settings() abort
   " Define mappings
   nnoremap <silent><buffer><expr> <CR>
