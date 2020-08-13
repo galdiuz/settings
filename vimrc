@@ -38,6 +38,7 @@ Plugin 'ElmCast/elm-vim'
 Plugin 'Shougo/defx.nvim'
 Plugin 'roxma/nvim-yarp'
 Plugin 'roxma/vim-hug-neovim-rpc'
+Plugin 'StanAngeloff/php.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -121,6 +122,16 @@ nmap <F3>tt o\dahbug::toggleTimer();<ESC>hi
 imap <F3>tt \dahbug::toggleTimer();<ESC>hi
 nmap <F3>tp o\dahbug::toggleTimer();<ESC>hPll
 imap <F3>tp \dahbug::toggleTimer();<ESC>hPlla
+
+function PhpSyntaxOverride()
+    syntax keyword phpDefine function contained
+    syntax keyword phpType class abstract extends interface implements static final var public private protected const trait contained
+endfunction
+
+augroup phpSyntaxOverride
+    autocmd!
+    autocmd FileType php call PhpSyntaxOverride()
+augroup END
 
 
 "=================
