@@ -268,6 +268,11 @@ augroup defx_settings
     autocmd BufEnter * call s:open_defx_if_directory()
     autocmd FileType defx setlocal cursorline
     autocmd FileType defx call defx#custom#column('filename', 'min_width', 60)
+    autocmd FileType defx call defx#custom#column('icon', 'directory_icon', '+ ')
+    autocmd FileType defx call defx#custom#column('icon', 'file_icon', '  ')
+    autocmd FileType defx call defx#custom#column('icon', 'opened_icon', '- ')
+    autocmd FileType defx call defx#custom#column('icon', 'root_icon', '')
+    autocmd FileType defx call defx#custom#column('indent', 'indent', '  ')
     autocmd FileType defx call s:defx_my_settings()
 augroup END
 
