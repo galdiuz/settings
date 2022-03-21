@@ -2,7 +2,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -21,20 +21,20 @@ Plugin 'sumpygump/php-documentor-vim'
 Plugin 'captbaritone/better-indent-support-for-php-with-html'
 Plugin 'gcmt/taboo.vim'
 Plugin 'rayburgemeestre/phpfolding.vim'
-Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'tpope/vim-fugitive'
+"Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'craigemery/vim-autotag'
 Plugin 'will133/vim-dirdiff'
-Plugin 'tpope/vim-surround'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+"Plugin 'tpope/vim-vinegar'
 Plugin 'tmhedberg/matchit'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'jparise/vim-graphql'
 Plugin 'neo4j-contrib/cypher-vim-syntax'
 Plugin 'ElmCast/elm-vim'
-"Plugin 'tpope/vim-vinegar'
 Plugin 'Shougo/defx.nvim'
 Plugin 'roxma/nvim-yarp'
 Plugin 'roxma/vim-hug-neovim-rpc'
@@ -69,7 +69,10 @@ set wildmode=longest,full
 set ignorecase
 set smartcase
 set list
-set listchars=tab:>-
+set listchars=tab:>-<,trail:-,nbsp:+
+set nohlsearch
+set scrolloff=3
+set sidescrolloff=5
 
 " Status line
 set laststatus=2                             " always show statusbar
@@ -133,6 +136,7 @@ augroup phpSyntaxOverride
     autocmd FileType php call PhpSyntaxOverride()
 augroup END
 
+autocmd FileType php set keywordprg=pman
 
 "=================
 " PLUGIN SETTINGS
@@ -232,15 +236,15 @@ vmap N <plug>(easymotion-N)
 
 " Defx
 
-nnoremap <silent> - :Defx -resume -toggle<CR>
+nnoremap <silent> - :Defx -listed -resume -toggle<CR>
 
 autocmd VimEnter * command! -nargs=? Explore :Defx <args>
-autocmd VimEnter * command! -nargs=? Texplore :Defx -split=tab -resume=1 <args>
+autocmd VimEnter * command! -nargs=? Texplore :Defx -split=tab -listed -resume <args>
 autocmd VimEnter * command! -nargs=? -bang Vexplore call SplitDefx('vnew', <bang>0, <f-args>)
 autocmd VimEnter * command! -nargs=? -bang Hexplore call SplitDefx('new', <bang>1, <f-args>)
 
 function! SplitDefx(split, bang, ...)
-    let com = a:split . " | Defx -resume " . get(a:, 1, "")
+    let com = a:split . " | Defx -listed -resume " . get(a:, 1, "")
 
     if a:bang
         let com = "below " . l:com
@@ -356,7 +360,7 @@ endfunction
 "=================
 " FOLDING
 "=================
-function! CustomFoldText()
+function! CustomFoldText(...)
     let currentLine = v:foldstart
     let lines = (v:foldend - v:foldstart + 1)
     let lineString = getline(currentLine)
@@ -472,5 +476,6 @@ augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
     autocmd VimEnter,BufReadPost * set foldtext=CustomFoldText()
+    autocmd BufRead,BufNewFile *.sls set filetype=yaml
     "autocmd VimEnter *.php normal zR
 augroup END " }
