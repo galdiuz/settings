@@ -39,6 +39,8 @@ Plugin 'Shougo/defx.nvim'
 Plugin 'roxma/nvim-yarp'
 Plugin 'roxma/vim-hug-neovim-rpc'
 Plugin 'StanAngeloff/php.vim'
+Plugin 'vim-vdebug/vdebug'
+Plugin 'chrisbra/csv.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -183,6 +185,17 @@ let g:syntastic_rst_checkers = ['sphinx']
 set sessionoptions+=tabpages,globals
 let g:taboo_tab_format=" %m%N: %f(%W) "
 let g:taboo_renamed_tab_format=" %m%N: %l(%W) "
+
+" Vdebug
+if !exists('g:vdebug_options')
+    let g:vdebug_options = {}
+endif
+if !exists('g:vdebug_features')
+    let g:vdebug_features = {}
+endif
+let g:vdebug_options.port = 9003
+let g:vdebug_options.break_on_open = 0
+let g:vdebug_features['max_children'] = 128
 
 " Easymotion
 let g:EasyMotion_do_mapping = 0
