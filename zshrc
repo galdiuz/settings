@@ -49,7 +49,8 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git nvm sudo docker docker-compose)
+plugins=(git docker per-directory-history zsh-nvm)
+export NVM_LAZY_LOAD=true
 
 # User configuration
 
@@ -90,9 +91,28 @@ alias grpo="git remote prune origin"
 alias gs="git status"
 alias gsta="git stash push"
 alias gsh="git show"
+alias iz-ip="ssh salt-master.izettle.webbhuset.com \"sudo salt 'iz-*' cmd.run 'curl -s icanhazip.com' --out txt | sort\""
+alias vim="nvim"
 
 stty -ixon
 
 setopt HIST_FIND_NO_DUPS
 
-eval $(hash thefuck 2>/dev/null && thefuck --alias fml)
+#export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
+#eval $(hash thefuck 2>/dev/null && thefuck --alias fml)
+
+if [ -d "$HOME/.local/bin" ] ; then
+  PATH="$PATH:$HOME/.local/bin"
+fi
+
+if [ -d "/opt/pman" ] ; then
+  PATH="$PATH:/opt/pman"
+fi
+
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export NODE_OPTIONS=--openssl-legacy-provider
+export COMPOSER_IGNORE_PLATFORM_REQS=1

@@ -41,6 +41,8 @@ Plugin 'roxma/vim-hug-neovim-rpc'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'vim-vdebug/vdebug'
 Plugin 'chrisbra/csv.vim'
+Plugin 'elixir-editors/vim-elixir'
+Plugin 'alvan/vim-php-manual'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -75,6 +77,7 @@ set listchars=tab:>-<,trail:-,nbsp:+
 set nohlsearch
 set scrolloff=3
 set sidescrolloff=5
+set mouse=
 
 " Status line
 set laststatus=2                             " always show statusbar
@@ -91,12 +94,17 @@ set statusline+=%<%P                         " file position
 set modelines=0
 set nomodeline
 
+map Y yy
+
+noremap <F12> <Esc>:syntax sync fromstart<CR>
+inoremap <F12> <C-o>:syntax sync fromstart<CR>
+
 " Toggle folding
 nnoremap <silent> <Space> @=(foldlevel('.')?'zA':"\<Space>")<CR>
 vnoremap <Space> zf
 
 " Remove trailing whitespace
-nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+nnoremap g<F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 " Line wrapping & Home to start of indent
 autocmd VimEnter,BufReadPost * noremap  <buffer> <silent> <Up>   gk
@@ -113,6 +121,9 @@ set tags=/var/www/tags,./tags;/,tags;/
 
 " Autocorrect
 iabbrev consolidaiton consolidation
+iabbrev currenct currency
+iabbrev presnet present
+iabbrev Presnet Present
 
 " Dahbug
 nmap <F3>dd o\dahbug::dump();<ESC>hi
@@ -123,6 +134,10 @@ nmap <F3>mm o\dahbug::methods();<ESC>hi
 imap <F3>mm \dahbug::methods();<ESC>hi
 nmap <F3>mp o\dahbug::methods();<ESC>hPll
 imap <F3>mp \dahbug::methods();<ESC>hPlla
+nmap <F3>ww o\dahbug::write();<ESC>hi
+imap <F3>ww \dahbug::write();<ESC>hi
+nmap <F3>wp o\dahbug::write();<ESC>hPll
+imap <F3>wp \dahbug::write();<ESC>hPlla
 nmap <F3>tt o\dahbug::toggleTimer();<ESC>hi
 imap <F3>tt \dahbug::toggleTimer();<ESC>hi
 nmap <F3>tp o\dahbug::toggleTimer();<ESC>hPll
@@ -138,7 +153,7 @@ augroup phpSyntaxOverride
     autocmd FileType php call PhpSyntaxOverride()
 augroup END
 
-autocmd FileType php set keywordprg=pman
+" autocmd FileType php set keywordprg=pman
 
 "=================
 " PLUGIN SETTINGS
@@ -175,6 +190,7 @@ let g:pdv_cfg_License = ""
 
 " Elm-vim
 autocmd FileType elm setlocal foldmethod=syntax
+let g:elm_format_autosave = 0
 
 " Syntastic
 let g:syntastic_check_on_open = 1
@@ -194,6 +210,7 @@ if !exists('g:vdebug_features')
     let g:vdebug_features = {}
 endif
 let g:vdebug_options.port = 9003
+let g:vdebug_options.path_maps = { '/srv/magento': '/home/andreas/work/projects/zettle/magento/' }
 let g:vdebug_options.break_on_open = 0
 let g:vdebug_features['max_children'] = 128
 
@@ -201,7 +218,7 @@ let g:vdebug_features['max_children'] = 128
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_upper = 1
-let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
+let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ,'
 let g:EasyMotion_verbose = 0
 let g:EasyMotion_skipfoldedline = 0
 let g:EasyMotion_enter_jump_first = 1
@@ -480,7 +497,7 @@ function! AlignEqualsRange() range
     endfor
 endfunction
 
-vnoremap <F4> :call AlignEqualsRange()<CR>
+"vnoremap <F4> :call AlignEqualsRange()<CR>
 
 "=================
 " RELOAD
