@@ -43,6 +43,7 @@ Plugin 'vim-vdebug/vdebug'
 Plugin 'chrisbra/csv.vim'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'alvan/vim-php-manual'
+Plugin 'github/copilot.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -168,6 +169,10 @@ autocmd FileType netrw setl bufhidden=delete
 
 " Closetags
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.xml"
+
+" Copilot
+imap <silent><script><expr> <S-Tab> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
 
 " Autopairs settings
 let g:AutoPairsShortcutFastWrap = 'đ'
