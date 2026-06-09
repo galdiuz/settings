@@ -49,8 +49,11 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker per-directory-history zsh-nvm)
-export NVM_LAZY_LOAD=true
+plugins=(git docker per-directory-history nvm)
+if [[ -z "$CLAUDECODE" ]]; then
+  zstyle ':omz:plugins:nvm' lazy yes
+  zstyle ':omz:plugins:nvm' lazy-cmd elm vim claude make
+fi
 
 # User configuration
 
