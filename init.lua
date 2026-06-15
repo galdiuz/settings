@@ -74,7 +74,9 @@ require('lazy').setup({
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
     config = function()
-      require('render-markdown').setup({})
+      require('render-markdown').setup({
+        sign = { enabled = false },
+      })
       -- The plugin's default highlights link to ColorColumn / Diff* groups, which
       -- are loud (red/green) in colorscheme 'vim'. Keep markdown minimal and
       -- transparency-friendly by clearing code and heading backgrounds.
