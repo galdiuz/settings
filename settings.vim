@@ -39,16 +39,13 @@ set mouse=
 
 " Status line
 set laststatus=2                             " always show statusbar
-set statusline=
-set statusline+=%-5.3n\                      " buffer number
-set statusline+=%f\                          " filename
-set statusline+=%{&bomb?'[BOM]':''}          " BOM flag
-set statusline+=%h%m%r%w                     " status flags
-"set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
-set statusline+=%=                           " right align remainder
-set statusline+=0x%-8B                       " character value
-set statusline+=%-14(%l,%c%V%)               " line, character
-set statusline+=%<%P                         " file position
+let &statusline  = '%f'                      " relative path
+let &statusline .= ' %h%m%r%w'               " flags: help/modified/readonly/preview
+let &statusline .= "%{&bomb?'[BOM]':''}"     " BOM marker
+let &statusline .= '%='                      " right align remainder
+let &statusline .= '%y '                     " [filetype]
+let &statusline .= '%-14(%l,%c%V%) '         " line, col (+virtual col)
+let &statusline .= '%<%P'                    " percent through file
 set modelines=0
 set nomodeline
 
