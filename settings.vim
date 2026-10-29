@@ -69,7 +69,7 @@ autocmd VimEnter,BufReadPost * noremap <End> g<End>
 autocmd VimEnter,BufReadPost * inoremap <buffer> <silent> <Up>   <C-o>gk
 autocmd VimEnter,BufReadPost * inoremap <buffer> <silent> <Down> <C-o>gj
 autocmd VimEnter,BufReadPost * inoremap <Home> <C-o>g^
-autocmd VimEnter,BufReadPost * inoremap <End> <C-o>g<End>
+autocmd VimEnter,BufReadPost * inoremap <End> <C-o>g<End><Right>
 
 " Tags
 set tags=/var/www/tags,./tags;/,tags;/
